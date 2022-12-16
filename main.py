@@ -1,7 +1,7 @@
-from func import Func
+from functions import func
 import pandas as pd
 
-fc = Func()
+fc = func.Func()
 role=input('Please enter a role: ')
 location=input('Please enter your location: ')
 

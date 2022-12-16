@@ -66,7 +66,6 @@ class Func:
         rd_role = _role.replace(' ', '-')
 
         rd_page = requests.get("http://www.reed.co.uk/jobs/" + rd_role + "-jobs-in-" + _location, headers=headers)
-        print(rd_page.url)
         rd_soup = BeautifulSoup(rd_page.text, "html.parser")
 
         # Use a CSS selector to find the job listings

@@ -2,7 +2,7 @@
 
 This is an attempt at a Python program that, when taking a Job Title and a Location, will scrape and collate job results from a variety of UK based job sites.
 
-### Currently support job sites
+### Currently supported job sites
 - Indeed
 - Reed
 

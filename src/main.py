@@ -1,12 +1,14 @@
-import func
+from scrapers.IndeedScraper import IndeedScraper
+from scrapers.ReedScraper import ReedScraper
 import pandas as pd
 
-fc = func.Func()
 role=input('Please enter a role: ')
 location=input('Please enter your location: ')
 
-jobs = fc.get_indeed_jobs(role, location)
-jobs = pd.concat([jobs, fc.get_reed_jobs(role, location)])
+indeedScraper = IndeedScraper(role, location)
+reedScraper = ReedScraper(role, location)
 
-print(jobs)
-jobs.to_csv("jobs.csv")
+
+jobs = pd.concat([indeedScraper.get_jobs(), reedScraper.get_jobs()])
+
+print(jobs.sort_values(by='salary', ascending=False))

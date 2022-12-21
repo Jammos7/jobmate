@@ -1,8 +1,7 @@
 import requests
-import math
 from bs4 import BeautifulSoup
 
-class Scraper:
+class Scraper():
     def __init__(self, _url):
         self.url = _url
         self.headers={
@@ -13,11 +12,19 @@ class Scraper:
         "sec-ch-ua-mobile": "?0",
         "Content-Type": "text/plain;charset=UTF-8"
         }
+        self.make_request()
+        self.get_soup()
+
+    def make_request(self):
+        self.page = requests.get(self.url, headers=self.headers)
+        return self.page
 
     def get_soup(self):
-        page = requests.get(self.url, headers=self.headers)
-        soup = BeautifulSoup(page.text, "html.parser")
-        return soup
+        self.soup = BeautifulSoup(self.page.text, "html.parser")
+        return self.soup
 
-    def get_jobs_df(self):
+    def get_url(self):
+        return self.url
+
+    def get_jobs(self):
         return

@@ -1,4 +1,5 @@
 import requests
+import pandas as pd
 from bs4 import BeautifulSoup
 
 class Scraper():
@@ -14,6 +15,7 @@ class Scraper():
         }
         self.make_request()
         self.get_soup()
+        self.html = '<table>'
 
     def make_request(self):
         self.page = requests.get(self.url, headers=self.headers)

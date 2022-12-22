@@ -30,14 +30,13 @@ class IndeedScraper(Scraper):
                 if table.select_one(".metadata.salary-snippet-container").select_one(".attribute_snippet"):
                     salaryString = table.select_one(".metadata.salary-snippet-container").select_one(".attribute_snippet").text
                 else:
-                    salaryString = 'N/A'                
+                    salaryString = 'Not Listed'                
                 salary = re.search(pattern, salaryString).group(1).replace(',', '')
             else:
-                salaryString = 'N/A'
+                salaryString = 'Not Listed'
                 salary = math.nan
             URL = table.select_one("a[role=button]").get("href")
             job = {"source": "Indeed", "title":title, "companyName":companyName, "companyLocation":companyLocation, "salaryString":salaryString, "salary":float(salary), "URL":"http://uk.indeed.com" + URL}
             jobs_df = pd.concat([jobs_df, pd.DataFrame([job])])
-        
         return jobs_df
 

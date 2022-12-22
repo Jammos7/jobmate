@@ -26,7 +26,7 @@ class ReedScraper(Scraper):
                 salaryString = table.select_one(".job-metadata__item--salary").get_text().strip()
                 salary = re.search(pattern, salaryString).group(1).replace(',', '')
             else:
-                salaryString = 'N/A'
+                salaryString = 'Not Listed'
                 salary = math.nan
 
             URL = table.select_one(".job-result-heading__title").find("a").get("href")

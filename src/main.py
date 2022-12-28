@@ -4,9 +4,6 @@ from flask import Flask, request, render_template
 import pandas as pd
 import string
 
-#role=input('Please enter a role: ')
-#location=input('Please enter your location: ')
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -23,7 +20,6 @@ def results():
     reedScraper = ReedScraper(role, location)
     joblist = pd.concat([indeedScraper.get_jobs(), reedScraper.get_jobs()]).sort_values(by='salary', ascending=False).to_dict(orient="records")
     return render_template('index.html', data = joblist, role = string.capwords(role), location = string.capwords(location), showresults = True)
-
 
 if __name__ == '__main__':
     app.run(debug=True)

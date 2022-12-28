@@ -32,18 +32,23 @@
                 {% endif %}
             </h3>
         </div>
-        <div class="d-flex justify-content-center">
-        <table class="mt-2">
-            {% for row in data %}
-                <tr>
-                    <td>{{ row.title }}</td>
-                    <td>{{ row.companyName }}</td>
-                    <td>{{ row.companyLocation }}</td>
-                    <td>{{ row.salaryString }}</td>
-                    <td><a href={{ row.URL}}>View on {{ row.source }}</a></td>
-                </tr>
+        <div class="container">
+            {% for row in data|batch(4) %}
+            <div class="row mt-3">
+            {% for card in row %}
+            <div class="col-3">
+            <div class="card border border-primary rounded hover-shadow">
+                <div class="card-body">
+                  <h5 class="card-title">{{ card.title }}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ card.salaryString }}</h6>
+                  <p class="card-text">{{ card.companyName }} in {{ card.companyLocation }}</p>
+                  <a href={{ card.URL }} class="card-link" target="_blank">View on {{ card.source }} <span class="glyphicon glyphicon-new-window"></span></a>
+                </div>
+            </div>
+            </div>
             {% endfor %}
-        </table>
+            </div>
+            {% endfor %}
         </div>
     </body>
 </html>
